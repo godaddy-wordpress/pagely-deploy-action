@@ -1,6 +1,9 @@
 ---
 name: Pagely Deploy Action
 description: Deploys code or build artifacts to a Pagely app from GitHub Actions.
+branding:
+  icon: 'play'
+  color: 'white'
 inputs:
   PAGELY_DEPLOY_DEST:
     description: Sets the destination subdirectory. You will usually want to prefix this with /httpdocs
