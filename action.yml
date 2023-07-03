@@ -1,0 +1,23 @@
+---
+name: Pagely Deploy Action
+description: Deploys code or build artifacts to a Pagely app from GitHub Actions.
+inputs:
+  PAGELY_DEPLOY_DEST:
+    description: Sets the destination subdirectory. You will usually want to prefix this with /httpdocs
+    required: true
+  PAGELY_INTEGRATION_ID:
+    description: The unique ID for the CICD integration for this app from Atomic.
+    required: true
+  PAGELY_INTEGRATION_SECRET:
+    description: The CICD integration secret for the app from Atomic.
+    required: true
+  PAGELY_APP_ID:
+    description: The numeric ID of the app to deploy to and for which the CICD integration is configured.
+    required: true
+  PAGELY_WORKING_DIR:
+    description: The directory from the repo you wish to deploy. Defaults to the root of the repo.
+    default: "${{github.workspace}}"
+    required: false
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/godaddy-wordpress/pagely-deploy:latest'
