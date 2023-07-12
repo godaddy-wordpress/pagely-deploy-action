@@ -20,6 +20,8 @@ jobs:
             latest=false
           tags: |
             type=semver,pattern={{raw}}
+            type=semver,pattern={{major}}
+            type=semver,pattern={{version}}
             type=sha
             type=raw,value=latest,enable=${{ !github.event.release.draft && !github.event.release.prerelease }} 
 
