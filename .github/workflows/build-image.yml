@@ -13,7 +13,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/godaddy-wordpress/pagely-deploy
+          images: |
+            ghcr.io/godaddy-wordpress/pagely-deploy
+            pagely/pagely-vps-deploy
           flavor: |
             latest=false
           tags: |
@@ -27,6 +29,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.PAGELY_DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.PAGELY_DOCKER_HUB_PASSWORD }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2

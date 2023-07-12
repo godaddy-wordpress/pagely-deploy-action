@@ -14,6 +14,25 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+if [[ "${SHOW_DEPRECATION_NOTICE:-0}" == "1" ]]; then
+    COff='\033[0m'
+    TextColour='\033[1;30m'
+    BGColour='\033[48;2;255;165;0m'
+    echo -e "\
+    ${TextColour}${BGColour}+-------------------------------------------------------------+${COff}
+    ${TextColour}${BGColour}|                     DEPRECATION WARNING                     |${COff}
+    ${TextColour}${BGColour}+-------------------------------------------------------------+${COff}
+    ${TextColour}${BGColour}|                                                             |${COff}
+    ${TextColour}${BGColour}|   This action (pagely/action-deploy) is being deprecated!   |${COff}
+    ${TextColour}${BGColour}| Please visit the following URL to switch to the new action: |${COff}
+    ${TextColour}${BGColour}|  https://github.com/godaddy-wordpress/pagely-deploy-action  |${COff}
+    ${TextColour}${BGColour}|                                                             |${COff}
+    ${TextColour}${BGColour}|     Please contact Pagely Support if you need any help.     |${COff}
+    ${TextColour}${BGColour}|                                                             |${COff}
+    ${TextColour}${BGColour}+-------------------------------------------------------------+${COff}
+    "
+fi
+
 PAGELY_DEPLOY_DEST="${INPUT_PAGELY_DEPLOY_DEST:-${PAGELY_DEPLOY_DEST:-}}"
 PAGELY_INTEGRATION_SECRET="${INPUT_PAGELY_INTEGRATION_SECRET:-${PAGELY_INTEGRATION_SECRET:-}}"
 PAGELY_INTEGRATION_ID="${INPUT_PAGELY_INTEGRATION_ID:-${PAGELY_INTEGRATION_ID:-}}"
