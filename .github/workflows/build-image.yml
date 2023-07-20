@@ -1,5 +1,5 @@
 ---
-name: Build and publish image to ghcr.io
+name: Build and publish image to ghcr.io/Docker Hub
 on:
   release:
     types:
